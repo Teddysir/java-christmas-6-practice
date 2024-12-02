@@ -36,10 +36,15 @@ public class OutputView {
     public static void OutputTotalDiscountMessage(int totalDiscountPrice) {
         System.out.println("\n<총혜택 금액>");
         if(totalDiscountPrice > 0) {
-            System.out.printf("-%,d원", totalDiscountPrice);
+            System.out.printf("-%,d원\n", totalDiscountPrice);
         } else  {
             OutputNoGiftMessage();
         }
+    }
+
+    public static void OutputAfterDiscountPrice(int afterPrice) {
+        System.out.println("\n<할인 후 예상 결제 금액>");
+        System.out.printf("%,d원", afterPrice);
     }
 
     public static void OutputNoBenefitMessage() {
