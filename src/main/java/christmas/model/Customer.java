@@ -19,4 +19,25 @@ public class Customer {
     public List<OrderMenu> getPurchasedMenus() {
         return Collections.unmodifiableList(new ArrayList<>(purchasedMenus));
     }
+
+
+    public int getTotalDessertQuantity() {
+        int totalDessertQuantity = 0;
+        for (OrderMenu purchasedMenu : purchasedMenus) {
+            if (purchasedMenu.getType().equals(MenuType.DESSERT)) {
+                totalDessertQuantity += purchasedMenu.getQuantity();
+            }
+        }
+        return totalDessertQuantity;
+    }
+
+    public int getTotalMainMenuQuantity() {
+        int totalMainMenuQuantity = 0;
+        for (OrderMenu purchasedMenu : purchasedMenus) {
+            if (purchasedMenu.getType().equals(MenuType.MAIN)) {
+                totalMainMenuQuantity += purchasedMenu.getQuantity();
+            }
+        }
+        return totalMainMenuQuantity;
+    }
 }

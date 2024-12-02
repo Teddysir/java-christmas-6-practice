@@ -3,12 +3,12 @@ package christmas.controller;
 import camp.nextstep.edu.missionutils.Console;
 import christmas.constants.MenuType;
 import christmas.model.Customer;
+import christmas.model.Discount;
 import christmas.model.OrderMenu;
 import christmas.model.Restaurant;
 import christmas.utils.ServiceValidation;
 import christmas.utils.Splitter;
 import christmas.view.InputView;
-import christmas.view.OutputView;
 
 import java.util.List;
 
@@ -16,6 +16,7 @@ public class Controller {
 
     private final Restaurant restaurant = new Restaurant();
     private final Customer customer = new Customer();
+    private final Discount discount = new Discount(customer, restaurant);
 
     public void start() {
         restaurant.initializeMenu();
@@ -23,7 +24,7 @@ public class Controller {
         getOrderMenus();
         ServiceValidation.checkedOnlyDrinkMenu(customer.getPurchasedMenus());
 
-        calculateMenu();
+        discount.calculateMenu(visitDate);
 
     }
 
@@ -72,40 +73,6 @@ public class Controller {
         MenuType type = restaurant.getMenuType(menuName);
 
         customer.addOrderMenu(menuName, menuPrice, menuAmount, type);
-    }
-
-    private void calculateMenu() {
-        OutputView.OutputPurchasedMenusGuides();
-
-        for (int i = 0; i < customer.getPurchasedMenus().size(); i++) {
-            OutputView.OutputPurchasedMenus(customer.getPurchasedMenus().get(i).getName(), customer.getPurchasedMenus().get(i).getQuantity());
-        }
-        int beforeDiscountPrice = calculateBeforeDiscountPrice(customer.getPurchasedMenus());
-
-        boolean hasGift = checkedGift(beforeDiscountPrice);
-        OutputView.OutputBeforeDiscountPrice(beforeDiscountPrice);
-
-
-    }
-
-    private int calculateBeforeDiscountPrice(List<OrderMenu> purchasedMenus) {
-        int totalPrice = 0;
-        for (int i = 0; i< purchasedMenus.size(); i++ ){
-            totalPrice += restaurant.getMenuPrice(purchasedMenus.get(i).getName()) * purchasedMenus.get(i).getQuantity();
-        }
-        return totalPrice;
-    }
-
-    private boolean checkedGift(int beforeDiscountPrice) {
-        System.out.println("\n<증정 메뉴>");
-        boolean hasGift = false;
-        if (beforeDiscountPrice >= 120000) {
-            hasGift = true;
-            OutputView.OutputGiftMessage();
-        } else {
-            OutputView.OutputNoGiftMessage();
-        }
-        return hasGift;
     }
 
 
