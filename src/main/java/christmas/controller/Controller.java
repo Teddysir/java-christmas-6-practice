@@ -76,11 +76,15 @@ public class Controller {
 
     private void calculateMenu() {
         OutputView.OutputPurchasedMenusGuides();
+
         for (int i = 0; i < customer.getPurchasedMenus().size(); i++) {
             OutputView.OutputPurchasedMenus(customer.getPurchasedMenus().get(i).getName(), customer.getPurchasedMenus().get(i).getQuantity());
         }
         int beforeDiscountPrice = calculateBeforeDiscountPrice(customer.getPurchasedMenus());
+
+        boolean hasGift = checkedGift(beforeDiscountPrice);
         OutputView.OutputBeforeDiscountPrice(beforeDiscountPrice);
+
 
     }
 
@@ -90,6 +94,18 @@ public class Controller {
             totalPrice += restaurant.getMenuPrice(purchasedMenus.get(i).getName()) * purchasedMenus.get(i).getQuantity();
         }
         return totalPrice;
+    }
+
+    private boolean checkedGift(int beforeDiscountPrice) {
+        System.out.println("\n<증정 메뉴>");
+        boolean hasGift = false;
+        if (beforeDiscountPrice >= 120000) {
+            hasGift = true;
+            OutputView.OutputGiftMessage();
+        } else {
+            OutputView.OutputNoGiftMessage();
+        }
+        return hasGift;
     }
 
 

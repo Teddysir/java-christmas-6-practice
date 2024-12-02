@@ -15,4 +15,12 @@ public class OutputView {
         System.out.println("\n<할인 전 총주문 금액>");
         System.out.printf("%,d원\n\n", price);
     }
+
+    public static void OutputGiftMessage() {
+        System.out.println("샴페인 1개");
+    }
+
+    public static void OutputNoGiftMessage() {
+        System.out.println("없음");
+    }
 }
