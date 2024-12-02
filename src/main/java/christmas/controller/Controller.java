@@ -7,6 +7,7 @@ import christmas.model.Restaurant;
 import christmas.utils.ServiceValidation;
 import christmas.utils.Splitter;
 import christmas.view.InputView;
+import christmas.view.OutputView;
 
 import java.util.List;
 
@@ -20,6 +21,9 @@ public class Controller {
         int visitDate = getVisitDate();
         getOrderMenus();
         ServiceValidation.checkedOnlyDrinkMenu(customer.getPurchasedMenus());
+
+        calculateMenu();
+
     }
 
 
@@ -37,10 +41,10 @@ public class Controller {
 
         List<String> splitCommaMenus = Splitter.commaSplitter(rawMenu);
 
-        calculateMenu(splitCommaMenus);
+        addMenu(splitCommaMenus);
     }
 
-    private void calculateMenu(List<String> splitCommaMenus) {
+    private void addMenu(List<String> splitCommaMenus) {
         int totalOrderAmount = 0;
 
         for (String splitCommaMenu : splitCommaMenus) {
@@ -67,6 +71,14 @@ public class Controller {
         MenuType type = restaurant.getMenuType(menuName);
 
         customer.addOrderMenu(menuName, menuPrice, menuAmount, type);
+    }
+
+    private void calculateMenu() {
+        OutputView.OutputPurchasedMenusGuides();
+        for (int i = 0; i < customer.getPurchasedMenus().size(); i++) {
+            OutputView.OutputPurchasedMenus(customer.getPurchasedMenus().get(i).getName(), customer.getPurchasedMenus().get(i).getQuantity());
+        }
+
     }
 
 

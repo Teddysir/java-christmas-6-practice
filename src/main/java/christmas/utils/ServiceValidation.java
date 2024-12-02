@@ -24,7 +24,7 @@ public class ServiceValidation {
             if(visitDate < 1 || visitDate > 31) {
                 throw new IllegalArgumentException(ErrorMessageType.INVALID_DATE_RANGE.getMessage());
             }
-            return visitDate
+            return visitDate;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessageType.INVALID_DATE_FORMAT.getMessage());
         }
