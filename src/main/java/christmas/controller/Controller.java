@@ -49,10 +49,16 @@ public class Controller {
             String menuName = splitHyphenMenu[0];
             int menuAmount = ServiceValidation.checkedMenuAmountFormat(splitHyphenMenu[1]);
 
+            ServiceValidation.checkedExistsMenuName(restaurant.getMenuBoard(), menuName);
+
             ServiceValidation.checkedMinimumOrderAmount(menuAmount);
             totalOrderAmount += menuAmount;
         }
         ServiceValidation.checkedMaximumTotalOrderAmount(totalOrderAmount);
+    }
+
+    private void updatePurchasedMenu(String menuName, int menuAmount) {
+
     }
 
 

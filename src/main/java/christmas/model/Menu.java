@@ -14,4 +14,15 @@ public class Menu {
         this.type = type;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public MenuType getType() {
+        return type;
+    }
 }

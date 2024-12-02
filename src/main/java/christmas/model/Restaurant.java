@@ -3,6 +3,7 @@ package christmas.model;
 import christmas.constants.MenuType;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Restaurant {
@@ -27,4 +28,7 @@ public class Restaurant {
         menuBoard.add(new Menu("샴페인", 25000, MenuType.DRINK));
     }
 
+    public List<Menu> getMenuBoard() {
+        return Collections.unmodifiableList(new ArrayList<>(menuBoard));
+    }
 }
