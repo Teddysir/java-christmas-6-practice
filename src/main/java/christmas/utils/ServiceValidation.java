@@ -8,7 +8,7 @@ public class ServiceValidation {
 
     public static void checkedTotalOrderAmount(int totalOrderAmount) {
         if(totalOrderAmount > 20 ) {
-            throw new IllegalArgumentException(ErrorMessageType.INVALID_ORDER_AMOUNT.getMessage());
+            throw new IllegalArgumentException(ErrorMessageType.INVALID_TOTAL_ORDER_AMOUNT.getMessage());
         }
     }
 
@@ -19,6 +19,13 @@ public class ServiceValidation {
             throw new IllegalArgumentException(ErrorMessageType.INVALID_DATE_FORMAT.getMessage());
         }
     }
+
+    public static void checkedOrderAmount(int orderAmount) {
+        if(orderAmount < 1) {
+            throw new IllegalArgumentException(ErrorMessageType.INVALID_ORDER_AMOUNT.getMessage());
+        }
+    }
+
 
 
 }
