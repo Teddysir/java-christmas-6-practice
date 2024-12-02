@@ -20,7 +20,11 @@ public class ServiceValidation {
 
     public static int checkedDateFormat(String rawDate) {
         try {
-            return Integer.parseInt(rawDate);
+            int visitDate = Integer.parseInt(rawDate);
+            if(visitDate < 1 || visitDate > 31) {
+                throw new IllegalArgumentException(ErrorMessageType.INVALID_DATE_RANGE.getMessage());
+            }
+            return visitDate
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessageType.INVALID_DATE_FORMAT.getMessage());
         }
@@ -101,6 +105,7 @@ public class ServiceValidation {
             throw new IllegalArgumentException(ErrorMessageType.INVALID_ORDER_ONLY_DRINK.getMessage());
         }
     }
+
 
 
 }
