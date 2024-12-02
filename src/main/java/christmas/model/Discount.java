@@ -43,8 +43,10 @@ public class Discount {
         specialDay(visitDate);
 
 
-        if (dDayDiscount > 0 || giftDiscount > 0 || weekdayDiscount > 0 || holidayDiscount > 0) {
-            OutputView.OutputBenefitMessage(dDayDiscount, weekdayDiscount, holidayDiscount, hasGift);
+        if (dDayDiscount > 0 || giftDiscount > 0 || weekdayDiscount > 0 || holidayDiscount > 0 || specialDayDiscount > 0) {
+            OutputView.OutputBenefitMessage(dDayDiscount, weekdayDiscount, holidayDiscount, hasGift, specialDayDiscount);
+        } else {
+            OutputView.OutputNoBenefitMessage();
         }
 
     }
@@ -52,9 +54,8 @@ public class Discount {
     private void specialDay(int visitDate) {
         int specialDayDiscountTrue = visitDate % 7;
         if (specialDayDiscountTrue == 3 || visitDate == 25) {
-
+            setSpecialDayDiscount(1000);
         }
-
     }
 
     private void holiday(int visitDate, int mainMenuQuantity) {

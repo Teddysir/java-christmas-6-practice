@@ -24,13 +24,22 @@ public class OutputView {
         System.out.println("없음");
     }
 
-    // , int weekdayDiscount, int holidayDiscount, int specialDiscount, boolean giftDiscount
-    public static void OutputBenefitMessage(int dDayDiscount, int weekdayDiscount, int holidayDiscount, boolean giftDiscount) {
-        System.out.println("<혜택 내역>");
+    public static void OutputBenefitMessage(int dDayDiscount, int weekdayDiscount, int holidayDiscount, boolean giftDiscount, int specialDayDiscount) {
+        benefitMessage();
         dDayDiscount(dDayDiscount);
         weekdayDiscount(weekdayDiscount);
         holidayDiscount(holidayDiscount);
+        specialDayDiscountMessage(specialDayDiscount);
         giftDiscount(giftDiscount);
+    }
+
+    public static void OutputNoBenefitMessage() {
+        benefitMessage();
+        System.out.println("없음\n");
+    }
+
+    private static void benefitMessage() {
+        System.out.println("<혜택 내역>");
     }
 
     private static void weekdayDiscount(int weekdayDiscount) {
@@ -54,6 +63,12 @@ public class OutputView {
     private static void dDayDiscount(int dDayDiscount) {
         if (dDayDiscount >= 1000) {
             System.out.printf("크리스마스 디데이 할인: -%,d원\n", dDayDiscount);
+        }
+    }
+
+    private static void specialDayDiscountMessage(int specialDayDiscount) {
+        if(specialDayDiscount == 1000) {
+            System.out.println("특별 할인: -1,000원");
         }
     }
 }
