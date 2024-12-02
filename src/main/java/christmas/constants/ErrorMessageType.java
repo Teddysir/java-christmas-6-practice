@@ -7,7 +7,9 @@ public enum ErrorMessageType {
     INVALID_MINIMUM_ORDER_AMOUNT("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요."),
     INVALID_MENU_AMOUNT("[ERROR] 유효하지 않은 주문 개수입니다. 다시 입력해 주세요."),
     INVALID_ORDER_FORMAT("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요."),
-    EXISTS_ORDER_MENU("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+    EXISTS_ORDER_MENU("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요."),
+    DUPLICATE_ORDER_MENU("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요."),
+    INVALID_ORDER_ONLY_DRINK("[ERROR] 음료만 주문 시, 주문할 수 없습니다. 다시 입력 해주세요.");
 
     private final String message;
 

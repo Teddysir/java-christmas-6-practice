@@ -15,4 +15,20 @@ public class OrderMenu {
         this.quantity = quantity;
         this.type = type;
     }
+
+    public MenuType getType() {
+        return type;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
 }

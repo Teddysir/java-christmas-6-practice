@@ -18,8 +18,8 @@ public class Controller {
     public void start() {
         restaurant.initializeMenu();
         int visitDate = getVisitDate();
-
         getOrderMenus();
+        ServiceValidation.checkedOnlyDrinkMenu(customer.getPurchasedMenus());
     }
 
 
@@ -53,14 +53,9 @@ public class Controller {
             int menuAmount = ServiceValidation.checkedMenuAmountFormat(splitHyphenMenu[1]);
 
             ServiceValidation.checkedExistsMenuName(restaurant.getMenuBoard(), menuName);
-
             ServiceValidation.checkedMinimumOrderAmount(menuAmount);
 
-            int menuPrice = restaurant.getMenuPrice(menuName);
-            MenuType type = restaurant.getMenuType(menuName);
-
-            customer.addOrderMenu(menuName, menuPrice, menuAmount, type);
-
+            updatePurchasedMenu(menuName, menuAmount);
 
             totalOrderAmount += menuAmount;
         }
@@ -68,7 +63,10 @@ public class Controller {
     }
 
     private void updatePurchasedMenu(String menuName, int menuAmount) {
+        int menuPrice = restaurant.getMenuPrice(menuName);
+        MenuType type = restaurant.getMenuType(menuName);
 
+        customer.addOrderMenu(menuName, menuPrice, menuAmount, type);
     }
 
 
