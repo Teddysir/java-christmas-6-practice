@@ -2,11 +2,9 @@ package christmas.utils;
 
 import christmas.constants.ErrorMessageType;
 
-import java.util.IllegalFormatException;
-
 public class ServiceValidation {
 
-    public static void checkedTotalOrderAmount(int totalOrderAmount) {
+    public static void checkedMaximumTotalOrderAmount(int totalOrderAmount) {
         if(totalOrderAmount > 20 ) {
             throw new IllegalArgumentException(ErrorMessageType.INVALID_TOTAL_ORDER_AMOUNT.getMessage());
         }
@@ -20,9 +18,41 @@ public class ServiceValidation {
         }
     }
 
-    public static void checkedOrderAmount(int orderAmount) {
+    public static void checkedMinimumOrderAmount(int orderAmount) {
         if(orderAmount < 1) {
-            throw new IllegalArgumentException(ErrorMessageType.INVALID_ORDER_AMOUNT.getMessage());
+            throw new IllegalArgumentException(ErrorMessageType.INVALID_MINIMUM_ORDER_AMOUNT.getMessage());
+        }
+    }
+
+    public static int checkedMenuAmountFormat(String rawMenuAmount) {
+        try {
+            return Integer.parseInt(rawMenuAmount);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessageType.INVALID_MENU_AMOUNT.getMessage());
+        }
+    }
+
+    public static void checkedOrderFormatHyphen(String rawMenu) {
+        if(!rawMenu.contains("-")) {
+            throw new IllegalArgumentException(ErrorMessageType.INVALID_ORDER_FORMAT.getMessage());
+        }
+    }
+
+    public static void checkedOrderFormatComma(String rawMenu) {
+        if(!rawMenu.contains(",")) {
+            throw new IllegalArgumentException(ErrorMessageType.INVALID_ORDER_FORMAT.getMessage());
+        }
+    }
+
+    public static void checkedOrderFormatRepeatComma(String rawMenu) {
+        if(rawMenu.contains(",,")) {
+            throw new IllegalArgumentException(ErrorMessageType.INVALID_ORDER_FORMAT.getMessage());
+        }
+    }
+
+    public static void checkedOrderFormatRepeatHyphen(String rawMenu) {
+        if(rawMenu.contains("--")) {
+            throw new IllegalArgumentException(ErrorMessageType.INVALID_ORDER_FORMAT.getMessage());
         }
     }
 

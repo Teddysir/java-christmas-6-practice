@@ -6,9 +6,7 @@ import christmas.utils.ServiceValidation;
 import christmas.utils.Splitter;
 import christmas.view.InputView;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 public class Controller {
 
@@ -17,6 +15,7 @@ public class Controller {
     public void start() {
         restaurant.initializeMenu();
         int visitDate = getVisitDate();
+
         getOrderMenus();
     }
 
@@ -30,16 +29,30 @@ public class Controller {
         InputView.inputOrderMenuMessage();
         String rawMenu = Console.readLine().trim();
 
+        ServiceValidation.checkedOrderFormatRepeatComma(rawMenu);
+        ServiceValidation.checkedOrderFormatRepeatHyphen(rawMenu);
+
         List<String> splitCommaMenus = Splitter.commaSplitter(rawMenu);
 
         calculateMenu(splitCommaMenus);
     }
 
     private void calculateMenu(List<String> splitCommaMenus) {
+        int totalOrderAmount = 0;
+
         for (String splitCommaMenu : splitCommaMenus) {
             String[] splitHyphenMenu = Splitter.hyphenSplitter(splitCommaMenu);
-            System.out.println(Arrays.toString(splitHyphenMenu));
+
+            ServiceValidation.checkedOrderFormatComma(splitCommaMenu);
+            ServiceValidation.checkedOrderFormatHyphen(splitCommaMenu);
+
+            String menuName = splitHyphenMenu[0];
+            int menuAmount = ServiceValidation.checkedMenuAmountFormat(splitHyphenMenu[1]);
+
+            ServiceValidation.checkedMinimumOrderAmount(menuAmount);
+            totalOrderAmount += menuAmount;
         }
+        ServiceValidation.checkedMaximumTotalOrderAmount(totalOrderAmount);
     }
 
 

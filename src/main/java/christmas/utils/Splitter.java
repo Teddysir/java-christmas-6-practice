@@ -1,10 +1,7 @@
 package christmas.utils;
 
-import christmas.model.Menu;
-
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 public class Splitter {
 
