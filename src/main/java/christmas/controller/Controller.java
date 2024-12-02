@@ -1,6 +1,8 @@
 package christmas.controller;
 
 import camp.nextstep.edu.missionutils.Console;
+import christmas.constants.MenuType;
+import christmas.model.Customer;
 import christmas.model.Restaurant;
 import christmas.utils.ServiceValidation;
 import christmas.utils.Splitter;
@@ -11,6 +13,7 @@ import java.util.List;
 public class Controller {
 
     private final Restaurant restaurant = new Restaurant();
+    private final Customer customer = new Customer();
 
     public void start() {
         restaurant.initializeMenu();
@@ -52,6 +55,13 @@ public class Controller {
             ServiceValidation.checkedExistsMenuName(restaurant.getMenuBoard(), menuName);
 
             ServiceValidation.checkedMinimumOrderAmount(menuAmount);
+
+            int menuPrice = restaurant.getMenuPrice(menuName);
+            MenuType type = restaurant.getMenuType(menuName);
+
+            customer.addOrderMenu(menuName, menuPrice, menuAmount, type);
+
+
             totalOrderAmount += menuAmount;
         }
         ServiceValidation.checkedMaximumTotalOrderAmount(totalOrderAmount);

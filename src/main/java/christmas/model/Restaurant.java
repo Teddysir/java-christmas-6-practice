@@ -28,6 +28,24 @@ public class Restaurant {
         menuBoard.add(new Menu("샴페인", 25000, MenuType.DRINK));
     }
 
+    public int getMenuPrice(String name) {
+        for (Menu menu : menuBoard) {
+            if (menu.getName().equals(name)) {
+                return menu.getPrice();
+            }
+        }
+        return 0;
+    }
+
+    public MenuType getMenuType(String name) {
+        for (Menu menu : menuBoard) {
+            if (menu.getName().equals(name)) {
+                return menu.getType();
+            }
+        }
+        return null;
+    }
+
     public List<Menu> getMenuBoard() {
         return Collections.unmodifiableList(new ArrayList<>(menuBoard));
     }
