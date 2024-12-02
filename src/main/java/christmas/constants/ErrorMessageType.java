@@ -1,0 +1,16 @@
+package christmas.constants;
+
+public enum ErrorMessageType {
+
+    INVALID_ORDER_AMOUNT("[ERROR] 메뉴는 한 번에 최대 20개까지만 주문할 수 있습니다. 다시 입력 해주세요.");
+
+    private final String message;
+
+    ErrorMessageType(String message) {
+        this.message = message;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+}
