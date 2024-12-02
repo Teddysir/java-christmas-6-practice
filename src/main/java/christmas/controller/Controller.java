@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Console;
 import christmas.constants.MenuType;
 import christmas.model.Customer;
 import christmas.model.Discount;
-import christmas.model.OrderMenu;
 import christmas.model.Restaurant;
 import christmas.utils.ServiceValidation;
 import christmas.utils.Splitter;
@@ -19,13 +18,17 @@ public class Controller {
     private final Discount discount = new Discount(customer, restaurant);
 
     public void start() {
-        restaurant.initializeMenu();
-        int visitDate = getVisitDate();
-        getOrderMenus();
-        ServiceValidation.checkedOnlyDrinkMenu(customer.getPurchasedMenus());
+        try {
+            restaurant.initializeMenu();
+            int visitDate = getVisitDate();
+            getOrderMenus();
+            ServiceValidation.checkedOnlyDrinkMenu(customer.getPurchasedMenus());
 
-        discount.calculateMenu(visitDate);
-        discount.totalDiscount();
+            discount.calculateMenu(visitDate);
+            discount.totalDiscount();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
 
     }
 

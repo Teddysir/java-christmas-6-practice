@@ -31,10 +31,11 @@ public class OutputView {
         holidayDiscount(holidayDiscount);
         specialDayDiscountMessage(specialDayDiscount);
         giftDiscount(giftDiscount);
+        System.out.println();
     }
 
     public static void OutputTotalDiscountMessage(int totalDiscountPrice) {
-        System.out.println("\n<총혜택 금액>");
+        System.out.println("<총혜택 금액>");
         if(totalDiscountPrice > 0) {
             System.out.printf("-%,d원\n", totalDiscountPrice);
         } else  {
@@ -43,8 +44,25 @@ public class OutputView {
     }
 
     public static void OutputAfterDiscountPrice(int afterPrice) {
-        System.out.println("\n<할인 후 예상 결제 금액>");
-        System.out.printf("%,d원", afterPrice);
+        System.out.println("<할인 후 예상 결제 금액>");
+        System.out.printf("%,d원\n\n", afterPrice);
+    }
+
+    public static void OutputBadgeMessage(int totalDiscountPrice) {
+        System.out.println("<12월 이벤트 배지>");
+        if(totalDiscountPrice > 20000) {
+            System.out.println("산타");
+            return;
+        }
+        if(totalDiscountPrice > 10000) {
+            System.out.println("트리");
+            return;
+        }
+        if(totalDiscountPrice > 5000) {
+            System.out.println("별");
+            return;
+        }
+        System.out.println("없음");
     }
 
     public static void OutputNoBenefitMessage() {

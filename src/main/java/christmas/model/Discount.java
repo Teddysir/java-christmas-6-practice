@@ -56,7 +56,9 @@ public class Discount {
         int totalDiscountPriceWithout = dDayDiscount + weekdayDiscount + holidayDiscount + specialDayDiscount;
         totalDiscountPrice += dDayDiscount + giftDiscount + weekdayDiscount + holidayDiscount + specialDayDiscount;
         OutputView.OutputTotalDiscountMessage(totalDiscountPrice);
+        System.out.println();
         OutputView.OutputAfterDiscountPrice(calculateBeforeDiscountPrice(customer.getPurchasedMenus()) - totalDiscountPriceWithout);
+        OutputView.OutputBadgeMessage(totalDiscountPrice);
 
     }
 
