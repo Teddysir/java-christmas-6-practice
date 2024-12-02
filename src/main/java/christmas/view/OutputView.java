@@ -33,6 +33,15 @@ public class OutputView {
         giftDiscount(giftDiscount);
     }
 
+    public static void OutputTotalDiscountMessage(int totalDiscountPrice) {
+        System.out.println("\n<총혜택 금액>");
+        if(totalDiscountPrice > 0) {
+            System.out.printf("-%,d원", totalDiscountPrice);
+        } else  {
+            OutputNoGiftMessage();
+        }
+    }
+
     public static void OutputNoBenefitMessage() {
         benefitMessage();
         System.out.println("없음\n");

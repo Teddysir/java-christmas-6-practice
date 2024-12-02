@@ -25,6 +25,7 @@ public class Controller {
         ServiceValidation.checkedOnlyDrinkMenu(customer.getPurchasedMenus());
 
         discount.calculateMenu(visitDate);
+        discount.totalDiscount();
 
     }
 

@@ -51,6 +51,13 @@ public class Discount {
 
     }
 
+    public void totalDiscount() {
+        int totalDiscountPrice = 0 ;
+        totalDiscountPrice += dDayDiscount + giftDiscount + weekdayDiscount + holidayDiscount + specialDayDiscount;
+        OutputView.OutputTotalDiscountMessage(totalDiscountPrice);
+
+    }
+
     private void specialDay(int visitDate) {
         int specialDayDiscountTrue = visitDate % 7;
         if (specialDayDiscountTrue == 3 || visitDate == 25) {
