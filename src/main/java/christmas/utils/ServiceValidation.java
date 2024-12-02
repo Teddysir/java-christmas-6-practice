@@ -12,10 +12,10 @@ public class ServiceValidation {
         }
     }
 
-    public static void checkedDateFormat(String rawDate) {
+    public static int checkedDateFormat(String rawDate) {
         try {
-             Integer.parseInt(rawDate);
-        } catch (IllegalFormatException e) {
+             return Integer.parseInt(rawDate);
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessageType.INVALID_DATE_FORMAT.getMessage());
         }
     }
