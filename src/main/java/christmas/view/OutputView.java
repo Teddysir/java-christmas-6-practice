@@ -10,4 +10,9 @@ public class OutputView {
     public static void OutputPurchasedMenus(String name, int quantity) {
         System.out.printf("%s %d개\n", name, quantity);
     }
+
+    public static void OutputBeforeDiscountPrice(int price) {
+        System.out.println("\n<할인 전 총주문 금액>");
+        System.out.printf("%,d원\n\n", price);
+    }
 }

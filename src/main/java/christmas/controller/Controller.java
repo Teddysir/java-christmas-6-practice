@@ -3,6 +3,7 @@ package christmas.controller;
 import camp.nextstep.edu.missionutils.Console;
 import christmas.constants.MenuType;
 import christmas.model.Customer;
+import christmas.model.OrderMenu;
 import christmas.model.Restaurant;
 import christmas.utils.ServiceValidation;
 import christmas.utils.Splitter;
@@ -78,7 +79,17 @@ public class Controller {
         for (int i = 0; i < customer.getPurchasedMenus().size(); i++) {
             OutputView.OutputPurchasedMenus(customer.getPurchasedMenus().get(i).getName(), customer.getPurchasedMenus().get(i).getQuantity());
         }
+        int beforeDiscountPrice = calculateBeforeDiscountPrice(customer.getPurchasedMenus());
+        OutputView.OutputBeforeDiscountPrice(beforeDiscountPrice);
 
+    }
+
+    private int calculateBeforeDiscountPrice(List<OrderMenu> purchasedMenus) {
+        int totalPrice = 0;
+        for (int i = 0; i< purchasedMenus.size(); i++ ){
+            totalPrice += restaurant.getMenuPrice(purchasedMenus.get(i).getName()) * purchasedMenus.get(i).getQuantity();
+        }
+        return totalPrice;
     }
 
 
